@@ -29,7 +29,7 @@ jobs:
 
       # SonarCloud (jalan kalau token tersedia)
       - name: SonarCloud Scan
-        if: ${{ secrets.SONAR_TOKEN_TIRTA != '' }}
+
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN_TIRTA }}
         run: ./gradlew sonar --info
