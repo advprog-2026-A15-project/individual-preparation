@@ -26,7 +26,6 @@ public class VectorUtility {
     }
 
     public double norm(double[] v1) {
-        // TODO: Implement me properly!
-        return 0.0;
+        return Math.sqrt(v1[0] * v1[0] + v1[1] * v1[1]);
     }
 }
