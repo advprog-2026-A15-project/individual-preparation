@@ -23,6 +23,10 @@ jobs:
       - name: Cache Gradle
         uses: gradle/actions/setup-gradle@v3
 
+      - name: Make gradlew executable
+        run: chmod +x ./gradlew
+
+
       # Build + Test + Lint (Checkstyle)
       - name: Build, Test, Lint
         run: ./gradlew clean test check
