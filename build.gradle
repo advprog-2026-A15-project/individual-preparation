@@ -45,7 +45,7 @@ checkstyle {
  */
 sonar {
 	properties {
-		property "sonar.organization", "ORG_KEY_KAMU"
-		property "sonar.projectKey", "PROJECT_KEY_KAMU"
+		property "sonar.organization", "advprog-2026-a15-project"
+		property "sonar.projectKey", "advprog-2026-a15-project"
 	}
 }
