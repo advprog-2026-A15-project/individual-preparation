@@ -7,7 +7,7 @@ plugins {
 	id 'checkstyle'
 
 	// SonarCloud / SonarQube
-	id "org.sonarqube" version "LATEST_AVAILABLE"
+	id "org.sonarqube" version "7.2.2.6593"
 }
 
 group = 'com.example'
