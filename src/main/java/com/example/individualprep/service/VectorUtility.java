@@ -44,8 +44,20 @@ public class VectorUtility {
     }
 
     public double dotProduct(double[] v1, double[] v2) {
-        // TODO: Implement me properly!
-        return 0.0;
+        // Validation
+        if (v1 == null || v2 == null) {
+            throw new IllegalArgumentException("Vectors cannot be null");
+        }
+        if (v1.length != v2.length){
+            throw new IllegalArgumentException("The vectors must be the same length");
+        }
+
+        // Dot Product Operation/Implementation
+        double result = 0.0;
+        for (int i = 0; i < v1.length; i++) {
+            result += v1[i] * v2[i];
+        }
+        return result;
     }
 
     public double norm(double[] v1) {
