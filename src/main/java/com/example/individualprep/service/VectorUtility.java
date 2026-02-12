@@ -7,7 +7,7 @@ public class VectorUtility {
 
     public double[] add(double[] v1, double[] v2) {
         if (v1 == null || v2 == null) {
-            throw new IllegalArgumentException("Vector cannot be null");
+            throw new IllegalArgumentException("Vector can't be null");
         }
 
         if (v1.length != v2.length) {
