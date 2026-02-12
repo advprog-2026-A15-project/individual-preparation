@@ -2,6 +2,9 @@ plugins {
 	id 'java'
 	id 'org.springframework.boot' version '4.0.2'
 	id 'io.spring.dependency-management' version '1.1.7'
+	id 'checkstyle'
+	id 'jacoco'
+	id 'org.sonarqube' version '7.2.2.6593'
 }
 
 group = 'com.example'
@@ -26,4 +29,24 @@ dependencies {
 
 tasks.named('test') {
 	useJUnitPlatform()
+}
+
+checkstyle {
+	toolVersion = "10.12.5"
+	ignoreFailures = false
+}
+
+jacocoTestReport {
+	reports {
+		xml.required = true
+	}
+}
+test.finalizedBy jacocoTestReport
+
+sonar {
+	properties {
+		property "sonar.projectKey", "advprog-2026-A15-project_individual-preparation"
+		property "sonar.organization", "advprog-2026-a15-project"
+		property "sonar.host.url", "https://sonarcloud.io"
+	}
 }
