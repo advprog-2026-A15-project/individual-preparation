@@ -84,7 +84,7 @@ class ArithmeticUtilityTest {
     }
 
     @Test
-    void testExponent() {
+    void testExponents() {
         assertEquals(8, arithmeticUtility.exponent(2, 3));
         assertEquals(1, arithmeticUtility.exponent(5, 0));
         assertEquals(0.125, arithmeticUtility.exponent(2, -3), 0.0001);
