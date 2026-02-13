@@ -45,7 +45,7 @@ checkstyle {
  */
 sonar {
 	properties {
-		property "sonar.organization", "advprog-2026-a15-project"
+		property "sonar.organization", "advprog-2026-a15-project-1"
 		property "sonar.projectKey", "advprog-2026-A15-project_individual-preparation"
 	}
 }
