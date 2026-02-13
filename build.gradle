@@ -44,8 +44,10 @@ checkstyle {
  * Ganti ORG_KEY_KAMU & PROJECT_KEY_KAMU dari SonarCloud
  */
 sonar {
-	properties {
-		property "sonar.organization", "advprog-2026-a15-project"
-		property "sonar.projectKey", "advprog-2026-A15-project_individual-preparation"
+	sonar {
+		properties {
+			property "sonar.organization", "advprog-2026-a15-project"
+			property "sonar.projectKey", "advprog-2026-a15-project-christna-final"
+		}
 	}
 }
