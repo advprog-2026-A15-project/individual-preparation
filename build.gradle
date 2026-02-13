@@ -41,7 +41,7 @@ checkstyle {
 }
 
 /** -------- Sonar --------
-
+//biar bisa di push lagi
  */
 sonar {
 	properties {
