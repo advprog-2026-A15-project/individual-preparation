@@ -66,6 +66,7 @@ class ArithmeticUtilityTest {
         assertEquals(5, arithmeticUtility.add(2, 3));
         assertEquals(-1, arithmeticUtility.add(2, -3));
         assertEquals(0, arithmeticUtility.add(0, 0));
+        assertEquals(67, arithmeticUtility.add(60, 7));
     }
 
     @Test
