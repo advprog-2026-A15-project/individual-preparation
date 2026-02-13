@@ -153,4 +153,13 @@ class VectorUtilityTest {
             vectorUtility.norm(v1);
         });
     }
+
+    @Test
+    void testDotProduct_emptyVectors() {
+        double[] v1 = {};
+        double[] v2 = {};
+        double expected = 0.0;
+        double actual = vectorUtility.dotProduct(v1, v2);
+        assertEquals(expected, actual, 0.0001);
+    }
 }

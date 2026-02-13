@@ -99,4 +99,13 @@ class ArithmeticUtilityTest {
         assertEquals(0.125, arithmeticUtility.exponent(2, -3), 0.0001);
         assertEquals(16, arithmeticUtility.exponent(-2, 4));
     }
+
+    @Test
+    void testSubtract_equalNumbers() {
+        double o1 = 123.456;
+        double o2 = 123.456;
+        double expected = 0.0;
+        double actual = arithmeticUtility.subtract(o1, o2);
+        assertEquals(expected, actual, 0.0001);
+    }
 }
