@@ -24,10 +24,22 @@ repositories {
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
+
+configurations.all {
+	resolutionStrategy {
+		eachDependency { DependencyResolveDetails details ->
+			if (details.requested.group == 'com.google.collections' && details.requested.name == 'google-collections') {
+				details.useTarget group: 'com.google.guava', name: 'guava', version: '32.0.1-jre'
+			}
+		}
+		force 'com.google.guava:guava:32.0.1-jre'
+	}
 }
 
 checkstyle {
-	toolVersion = '10.12.4'
+	toolVersion = '10.11.0'
 	configFile = file("${rootDir}/config/checkstyle/checkstyle.xml")
 	ignoreFailures = false
 	maxWarnings = 0
@@ -83,5 +95,6 @@ sonar {
 		property 'sonar.sources', 'src/main/java'
 		property 'sonar.tests', 'src/test/java'
 		property 'sonar.sourceEncoding', 'UTF-8'
+		property 'sonar.gradle.skipCompile', 'true'
 	}
 }
