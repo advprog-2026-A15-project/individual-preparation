@@ -1,10 +1,10 @@
 plugins {
 	id 'java'
-	id 'org.springframework.boot' version '4.0.2'
+	id 'org.springframework.boot' version '3.4.2'
 	id 'io.spring.dependency-management' version '1.1.7'
-	id 'checkstyle'
 	id 'jacoco'
-	id 'org.sonarqube' version '7.2.2.6593'
+	id 'checkstyle'
+	id 'org.sonarqube' version '4.4.1.3373'
 }
 
 group = 'com.example'
@@ -22,31 +22,79 @@ repositories {
 }
 
 dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter-webmvc'
-	testImplementation 'org.springframework.boot:spring-boot-starter-webmvc-test'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
 
-tasks.named('test') {
-	useJUnitPlatform()
+configurations.all {
+	resolutionStrategy {
+		eachDependency { DependencyResolveDetails details ->
+			if (details.requested.group == 'com.google.collections' && details.requested.name == 'google-collections') {
+				details.useTarget group: 'com.google.guava', name: 'guava', version: '32.0.1-jre'
+			}
+		}
+		force 'com.google.guava:guava:32.0.1-jre'
+	}
 }
 
 checkstyle {
-	toolVersion = "10.12.5"
+	toolVersion = '10.11.0'
+	configFile = file("${rootDir}/config/checkstyle/checkstyle.xml")
 	ignoreFailures = false
+	maxWarnings = 0
+}
+
+tasks.withType(Checkstyle) {
+	reports {
+		xml.required = false
+		html.required = true
+	}
+}
+
+jacoco {
+	toolVersion = '0.8.11'
+}
+
+test {
+	useJUnitPlatform()
+	finalizedBy jacocoTestReport
 }
 
 jacocoTestReport {
+	dependsOn test
 	reports {
 		xml.required = true
+		csv.required = false
+		html.required = true
+		xml.outputLocation = file("${buildDir}/reports/jacoco/test/jacocoTestReport.xml")
 	}
 }
-test.finalizedBy jacocoTestReport
 
-sonar {
+jacocoTestCoverageVerification {
+	violationRules {
+		rule {
+			limit {
+				counter = 'LINE'
+				value = 'COVEREDRATIO'
+				minimum = 0.50
+			}
+		}
+	}
+}
+
+check.dependsOn jacocoTestCoverageVerification
+
+sonarqube {
 	properties {
 		property "sonar.projectKey", "advprog-2026-A15-project_individual-preparation"
 		property "sonar.organization", "advprog-2026-a15-project"
-		property "sonar.host.url", "https://sonarcloud.io"
+		property 'sonar.host.url', 'https://sonarcloud.io'
+		property 'sonar.coverage.jacoco.xmlReportPaths', 'build/reports/jacoco/test/jacocoTestReport.xml'
+		property 'sonar.java.binaries', 'build/classes/java/main'
+		property 'sonar.sources', 'src/main/java'
+		property 'sonar.tests', 'src/test/java'
+		property 'sonar.sourceEncoding', 'UTF-8'
+		property 'sonar.gradle.skipCompile', 'true'
 	}
 }
