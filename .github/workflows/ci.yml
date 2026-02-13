@@ -35,5 +35,5 @@ jobs:
       - name: SonarCloud Scan
 
         env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN_TIRTA }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN_ALI }}
         run: ./gradlew sonarqube --info
