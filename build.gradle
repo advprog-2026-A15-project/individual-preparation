@@ -85,10 +85,10 @@ jacocoTestCoverageVerification {
 
 check.dependsOn jacocoTestCoverageVerification
 
-sonar {
+sonarqube {
 	properties {
-		property 'sonar.projectKey', 'advprog-2026-A15-project_individual-preparation-christna-0406'
-		property 'sonar.organization', 'advprog-2026-A15-project'
+		property "sonar.projectKey", "christna-final"
+		property "sonar.organization", "advprog-2026-a15-project-christna-final"
 		property 'sonar.host.url', 'https://sonarcloud.io'
 		property 'sonar.coverage.jacoco.xmlReportPaths', 'build/reports/jacoco/test/jacocoTestReport.xml'
 		property 'sonar.java.binaries', 'build/classes/java/main'
