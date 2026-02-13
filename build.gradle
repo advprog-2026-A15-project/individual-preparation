@@ -41,7 +41,7 @@ checkstyle {
 }
 
 /** -------- Sonar --------
- * Ganti ORG_KEY_KAMU & PROJECT_KEY_KAMU dari SonarCloud
+
  */
 sonar {
 	properties {

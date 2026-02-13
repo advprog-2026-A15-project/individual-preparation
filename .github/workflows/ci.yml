@@ -31,9 +31,9 @@ jobs:
       - name: Build, Test, Lint
         run: ./gradlew clean test check
 
-      # SonarCloud (jalan kalau token tersedia)
+      # SonarCloud
       - name: SonarCloud Scan
 
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN_TIRTA }}
-        run: ./gradlew sonarqube --info
+        run: ./gradlew sonarqube --info --debug
