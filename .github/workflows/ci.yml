@@ -36,4 +36,4 @@ jobs:
 
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN_FATHIR }}
-        run: ./gradlew sonarqube --info --debug
+        run: ./gradlew sonarqube -Dsonar.login=$SONAR_TOKEN -Dsonar.projectKey=your_key -Dsonar.organization=your_org
