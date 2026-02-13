@@ -78,10 +78,46 @@ class VectorUtilityTest {
     }
 
     @Test
+    void testAdd_nullVectors_shouldThrow() {
+        double[] v1 = null;
+        double[] v2 = {1,2};
+        assertThrows(IllegalArgumentException.class, () -> {
+            vectorUtility.add(v1, v2);
+        });
+    }
+
+    @Test
+    void testAdd_differentLengthVectors_shouldThrow() {
+        double[] v1 = {1,2};
+        double[] v2 = {1,2,3};
+        assertThrows(IllegalArgumentException.class, () -> {
+            vectorUtility.add(v1, v2);
+        });
+    }
+
+    @Test
     void testSubtract() {
         double[] v1 = {5,7};
         double[] v2 = {2,3};
         assertArrayEquals(new double[]{3,4}, vectorUtility.subtract(v1, v2), 0.0001);
+    }
+
+    @Test
+    void testSubtract_nullVectors_shouldThrow() {
+        double[] v1 = {1,2};
+        double[] v2 = null;
+        assertThrows(IllegalArgumentException.class, () -> {
+            vectorUtility.subtract(v1, v2);
+        });
+    }
+
+    @Test
+    void testSubtract_differentLengthVectors_shouldThrow() {
+        double[] v1 = {1,2,3};
+        double[] v2 = {1,2};
+        assertThrows(IllegalArgumentException.class, () -> {
+            vectorUtility.subtract(v1, v2);
+        });
     }
 
     @Test
@@ -91,8 +127,30 @@ class VectorUtilityTest {
     }
 
     @Test
+    void testMultiply_nullVector_shouldThrow() {
+        double[] v1 = null;
+        assertThrows(IllegalArgumentException.class, () -> {
+            vectorUtility.multiply(v1, 3);
+        });
+    }
+
+    @Test
     void testNorm() {
         double[] v1 = {3,4};
         assertEquals(5, vectorUtility.norm(v1), 0.0001);
+    }
+
+    @Test
+    void testNorm_zeroVector() {
+        double[] v1 = {0,0,0};
+        assertEquals(0, vectorUtility.norm(v1), 0.0001);
+    }
+
+    @Test
+    void testNorm_nullVector_shouldThrow() {
+        double[] v1 = null;
+        assertThrows(IllegalArgumentException.class, () -> {
+            vectorUtility.norm(v1);
+        });
     }
 }
