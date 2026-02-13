@@ -1,39 +1,46 @@
-name: CI
+name: Java CI with Gradle
 
 on:
-  pull_request:
-    branches: [ "main","cicdfathir" ]
   push:
-    branches: [ "main","cicdfathir" ]
+    branches: ["main", "cicdfathir"]
+  pull_request:
+    branches: ["main", "cicdfathir"]
 
 jobs:
-  build-test-lint-sonar:
+  build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
 
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
-      - name: Set up Java
+      - name: Set up JDK 21
         uses: actions/setup-java@v4
         with:
-          distribution: temurin
-          java-version: "21"
+          java-version: '21'
+          distribution: 'temurin'
 
-      - name: Cache Gradle
+      - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v3
 
-      - name: Make gradlew executable
-        run: chmod +x ./gradlew
+      - name: Build with Gradle
+        run: ./gradlew build
 
+      - name: Run Linter (Checkstyle)
+        run: ./gradlew checkstyleMain
 
-      # Build + Test + Lint (Checkstyle)
-      - name: Build, Test, Lint
-        run: ./gradlew clean test check
+      - name: Cache SonarCloud packages
+        uses: actions/cache@v4
+        with:
+          path: ~/.sonar/cache
+          key: ${{ runner.os }}-sonar
+          restore-keys: ${{ runner.os }}-sonar
 
-      # SonarCloud (jalan kalau token tersedia)
-      - name: SonarCloud Scan
-
+      - name: Analyze with SonarCloud
         env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN_FATHIR }}
-        run: ./gradlew sonarqube --info --debug
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN_FATHIR}}
+        run: ./gradlew sonar
