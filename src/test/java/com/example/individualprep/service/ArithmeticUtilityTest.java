@@ -14,6 +14,7 @@ class ArithmeticUtilityTest {
         double expected = 6;
         double actual = arithmeticUtility.subtract(o1, o2);
         assertEquals(expected, actual, 0.0001);
+        assertEquals(15, arithmeticUtility.subtract(20, 5), 0.0001);
     }
 
     @Test
@@ -23,6 +24,7 @@ class ArithmeticUtilityTest {
         double expected = -4;
         double actual = arithmeticUtility.subtract(o1, o2);
         assertEquals(expected, actual, 0.0001);
+        assertEquals(-10, arithmeticUtility.subtract(-5, 5), 0.0001);
     }
 
     @Test
@@ -32,6 +34,7 @@ class ArithmeticUtilityTest {
         double expected = 5;
         double actual = arithmeticUtility.subtract(o1, o2);
         assertEquals(expected, actual, 0.0001);
+        assertEquals(0, arithmeticUtility.subtract(0, 0), 0.0001);
     }
 
     @Test
@@ -41,6 +44,7 @@ class ArithmeticUtilityTest {
         double expected = 3.5;
         double actual = arithmeticUtility.subtract(o1, o2);
         assertEquals(expected, actual, 0.0001);
+        assertEquals(1.1, arithmeticUtility.subtract(3.3, 2.2), 0.0001);
     }
 
     @Test
@@ -50,6 +54,7 @@ class ArithmeticUtilityTest {
         double expected = -2;
         double actual = arithmeticUtility.subtract(o1, o2);
         assertEquals(expected, actual, 0.0001);
+        assertEquals(2, arithmeticUtility.subtract(-3, -5), 0.0001);
     }
 
     @Test
@@ -59,6 +64,7 @@ class ArithmeticUtilityTest {
         double expected = 999999.999999;
         double actual = arithmeticUtility.subtract(o1, o2);
         assertEquals(expected, actual, 0.0001);
+        assertEquals(0, arithmeticUtility.subtract(1e6, 1e6), 0.0001);
     }
 
     @Test
@@ -67,6 +73,7 @@ class ArithmeticUtilityTest {
         assertEquals(-1, arithmeticUtility.add(2, -3));
         assertEquals(0, arithmeticUtility.add(0, 0));
         assertEquals(67, arithmeticUtility.add(60, 7));
+        assertEquals(-10, arithmeticUtility.add(-5, -5));
     }
 
     @Test
@@ -74,6 +81,7 @@ class ArithmeticUtilityTest {
         assertEquals(6, arithmeticUtility.multiply(2, 3));
         assertEquals(-6, arithmeticUtility.multiply(2, -3));
         assertEquals(0, arithmeticUtility.multiply(0, 5));
+        assertEquals(25, arithmeticUtility.multiply(-5, -5));
     }
 
     @Test
@@ -81,6 +89,7 @@ class ArithmeticUtilityTest {
         assertEquals(2, arithmeticUtility.divide(6, 3));
         assertEquals(-2, arithmeticUtility.divide(6, -3));
         assertThrows(ArithmeticException.class, () -> arithmeticUtility.divide(5, 0));
+        assertEquals(2.5, arithmeticUtility.divide(5, 2), 0.0001);
     }
 
     @Test
@@ -88,5 +97,6 @@ class ArithmeticUtilityTest {
         assertEquals(8, arithmeticUtility.exponent(2, 3));
         assertEquals(1, arithmeticUtility.exponent(5, 0));
         assertEquals(0.125, arithmeticUtility.exponent(2, -3), 0.0001);
+        assertEquals(16, arithmeticUtility.exponent(-2, 4));
     }
 }
